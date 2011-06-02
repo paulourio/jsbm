@@ -38,7 +38,7 @@ static void print_memsize(const int data) {
 void meminfo(void) {
     struct mallinfo info = mallinfo();
 
-    out("Informações da Memória");
+    out("Informações da Memória\n");
     out("\tTotal de bytes alocados: %i bytes", info.arena);
     print_memsize(info.arena);
     out("\tPedaços não sendo usados: %i\n", info.ordblks);
