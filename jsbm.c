@@ -95,10 +95,13 @@ void benchmark_mostrar(const char *a, const char *b) {
     int bmb = procurar_benchmark(b);
     int data = bm.lista[bmb]->alocado - bm.lista[bma]->alocado;
     long unsigned int    delta = (bm.lista[bmb]->clock - bm.lista[bma]->clock);
-
+    double tempo = ((double) delta * 10) / CLOCKS_PER_SEC;
+    
+    if (tempo == 0)
+        tempo = difftime(bm.lista[bmb]->time, bm.lista[bma]->time);
+        
     out("Clock: %lu\n", delta);
-    out("Tempo: %lf seg\n", ((double) delta * 10) / CLOCKS_PER_SEC);
-    //difftime(bm.lista[bmb]->time, bm.lista[bma]->time));
+    out("Tempo: %lf seg\n", tempo);
     out("Memória: %i bytes", data - (int) sizeof(struct benchmark_data));
     print_memsize(data);
 }
